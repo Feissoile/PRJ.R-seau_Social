@@ -82,6 +82,30 @@ router.post("/user/signin", (req, res) => {
   }
 })
 
+router.put("/user/logout", (req, res) => {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.json({ result: false, error: "Token invalide" });
+  }
+
+  User.updateOne({ token: token }, { isLog: false })
+    .then((result) => {
+      if (result.modifiedCount > 0) {
+        res.json({ result: true, message: "Déconnexion réussie" });
+      } else {
+        res.json({
+          result: false,
+          error: "Utilisateur non trouvé ou déjà déconnecté",
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("Erreur de déconnexion:", error);
+      res.json({ result: false, error: "Erreur de déconnexion" });
+    });
+});
+
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   res.send("respond with a resource");
