@@ -1,13 +1,12 @@
 function checkBody(body, keys) {
-    let isValid = true;
   
-    for (const field of keys) {
-      if (!body[field] || body[field] === '') {
-        isValid = false;
-      }
+  for (const field of keys) {
+    if (body[field] && body[field] !== "") {
+      return true;
     }
-  
-    return isValid;
   }
-  
-  module.exports = { checkBody };
+
+  return false;
+}
+
+module.exports = { checkBody };

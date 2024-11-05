@@ -47,7 +47,7 @@ router.post("/publication/:postId/comment", (req, res) => {
     return;
   }
   const newComment = new Comment({
-    postId: req.body.postId,
+    postId: req.params.postId,
     userId: req.body.userId,
     likes: [],
     texte: req.body.texte,
@@ -62,6 +62,6 @@ router.post("/publication/:postId/comment", (req, res) => {
     })
     .catch((error) => {
       console.error("Erreur lors de l'enregistrement du commentaire", error);
-      res.json({ result: false, error: "Erreur" });
+      res.json({ result: false, error: "Erreur lors de l'ajout du commentaire" });
     });
 });
