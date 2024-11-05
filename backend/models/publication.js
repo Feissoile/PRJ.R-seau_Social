@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
 const publicationSchema = mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  profilePicture:String,
   nickname: String,
   text: String,
   picture: String,
