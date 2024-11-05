@@ -49,7 +49,7 @@ router.post("/user/signup", (req, res) => {
     });
 });
 
-//connexion/deconnexion
+//connexion
 router.post("/user/signin", (req, res) => {
   try {
     if (!checkBody(req.body, ["email", "password"])) {
@@ -80,8 +80,9 @@ router.post("/user/signin", (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "error", error });
   }
-})
+});
 
+//deconnexion
 router.put("/user/logout", (req, res) => {
   const { token } = req.body;
 
@@ -103,6 +104,47 @@ router.put("/user/logout", (req, res) => {
     .catch((error) => {
       console.error("Erreur de déconnexion:", error);
       res.json({ result: false, error: "Erreur de déconnexion" });
+    });
+});
+
+/* Gestion du compte utilisateur*/
+router.put("/user/updateProfile/:token", (req, res) => {
+  const {
+    nickname,
+    email,
+    password,
+    adress,
+    description,
+    coverPicture,
+    profilePicture,
+  } = req.body;
+  const token = req.params.token;
+
+  if (!token) {
+    return res.json({ result: false, error: "Token invalide" });
+  }
+
+  //Construction da la maj
+  const updateFields = {};
+  if (nickname) updateFields.nickname = nickname;
+  if (email) updateFields.email = email;
+  if (adress) updateFields.adress = adress;
+  if (description) updateFields.description = description;
+  if (coverPicture) updateFields.coverPicture = coverPicture;
+  if (profilePicture) updateFields.profilePicture = profilePicture;
+
+  //maj
+  User.findOneAndUpdate({ token: token }, { $set: updateFields })
+    .then((updatedUser) => {
+      if (updatedUser) {
+        res.json({ result: true, data: updatedUser });
+      } else {
+        res.json({ result: false, error: "Utilisateur introuvable" });
+      }
+    })
+    .catch((error) => {
+      console.error("Erreur de mise à jour du profil:", error);
+      res.json({ result: false, error: "Erreur de mise à jour du profil" });
     });
 });
 

@@ -1,0 +1,38 @@
+{
+  "type": "Compass Connections",
+  "version": {
+    "$numberInt": "1"
+  },
+  "connections": [
+    {
+      "id": "ca68165b-0434-4b73-a6f0-9af99a697149",
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1730734820052"
+        }
+      },
+      "savedConnectionType": "recent",
+      "connectionOptions": {
+        "connectionString": "mongodb+srv://feissoileali:Alifeissoile94!@prjreseausocial0.irhl8.mongodb.net/?retryWrites=true&w=majority&appName=prjReseauSocial0",
+        "oidc": {
+          "serializedState": "eyJvaWRjUGx1Z2luU3RhdGVWZXJzaW9uIjowLCJzdGF0ZSI6W119"
+        }
+      }
+    },
+    {
+      "id": "f27bdd6d-8150-467c-99ef-511d1dd6befa",
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1730734815657"
+        }
+      },
+      "savedConnectionType": "recent",
+      "connectionOptions": {
+        "connectionString":"mongodb+srv://feissoileali:Alifeissoile94!@prjreseausocial0.irhl8.mongodb.net/?retryWrites=true&w=majority&appName=prjReseauSocial0",
+        "oidc": {
+          "serializedState": "eyJvaWRjUGx1Z2luU3RhdGVWZXJzaW9uIjowLCJzdGF0ZSI6W119"
+        }
+      }
+    }
+  ]
+}
