@@ -24,5 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/', userRouter);
 app.use('/user', userRoutes);
+app.use('/like', userRoutes);
+app.use('/publication', userRoutes);
 
 module.exports = app;
