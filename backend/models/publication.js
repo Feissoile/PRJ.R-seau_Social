@@ -4,7 +4,7 @@ const publicationSchema = mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   profilePicture:String,
   nickname: String,
-  text: String,
+  texte: String,
   picture: String,
   video: String,
   date: Date,
