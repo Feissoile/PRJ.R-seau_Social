@@ -10,6 +10,6 @@ const commentSchema = mongoose.Schema({
   date: Date,
 });
 
-const Comment = mongoose.model("publications", commentSchema);
+const Comment = mongoose.model("comments", commentSchema);
 
 module.exports = Comment;

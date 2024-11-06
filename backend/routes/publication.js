@@ -81,12 +81,12 @@ router.post("/publication/:postId/like", (req, res) => {
       }
 
       const alreadyLiked = post.likes.includes(userId);
-
+      //logique pour unlike
       if (alreadyLiked) {
        
         post.likes = post.likes.filter(id => id.toString() !== userId);
       } else {
-       
+      //logique pour like 
         post.likes.push(userId);
       }
 
@@ -96,3 +96,6 @@ router.post("/publication/:postId/like", (req, res) => {
     })
     .catch(error => res.status(500).json({ result: false, error: "Erreur lors de la requête du like" }));
 });
+
+
+module.exports = router;
