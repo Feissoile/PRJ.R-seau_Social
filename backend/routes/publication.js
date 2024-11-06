@@ -9,7 +9,7 @@ const { checkBody } = require("../modules/checkBody");
 
 //route pour la creation d'une publication
 router.post("/publication/post", (req, res) => {
-  console.log("newpost route");
+  console.log("Route POST /publication/post appelée");
   console.log(req.body);
 
   if (!checkBody(req.body, ["texte", "picture", "video"])) {
@@ -56,16 +56,19 @@ router.post("/publication/:postId/comment", (req, res) => {
     date: req.body.date,
   });
 
-  newComment.save()
+  newComment
+    .save()
     .then((data) => {
       res.json({ result: true, comment: data });
     })
     .catch((error) => {
       console.error("Erreur lors de l'enregistrement du commentaire", error);
-      res.json({ result: false, error: "Erreur lors de l'ajout du commentaire" });
+      res.json({
+        result: false,
+        error: "Erreur lors de l'ajout du commentaire",
+      });
     });
 });
-
 
 //Route pour gérer les likes/unlikes des publications
 
@@ -73,29 +76,35 @@ router.post("/publication/:postId/like", (req, res) => {
   const { userId } = req.body;
   const { postId } = req.params;
 
- 
   Publication.findById(postId)
     .then((post) => {
       if (!post) {
-        return res.status(404).json({ result: false, error: "Post introuvable" });
+        return res
+          .status(404)
+          .json({ result: false, error: "Post introuvable" });
       }
 
       const alreadyLiked = post.likes.includes(userId);
       //logique pour unlike
       if (alreadyLiked) {
-       
-        post.likes = post.likes.filter(id => id.toString() !== userId);
+        post.likes = post.likes.filter((id) => id.toString() !== userId);
       } else {
-      //logique pour like 
+        //logique pour like
         post.likes.push(userId);
       }
 
-      post.save()
-        .then(updatedPost => res.json({ result: true, likes: updatedPost.likes }))
-        .catch(error => res.status(500).json({ result: false, error }));
+      post
+        .save()
+        .then((updatedPost) =>
+          res.json({ result: true, likes: updatedPost.likes })
+        )
+        .catch((error) => res.status(500).json({ result: false, error }));
     })
-    .catch(error => res.status(500).json({ result: false, error: "Erreur lors de la requête du like" }));
+    .catch((error) =>
+      res
+        .status(500)
+        .json({ result: false, error: "Erreur lors de la requête du like" })
+    );
 });
-
 
 module.exports = router;
