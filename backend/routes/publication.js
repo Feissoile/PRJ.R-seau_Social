@@ -67,7 +67,7 @@ router.post("/publication/:postId/comment", (req, res) => {
 });
 
 
-//Route pour gérer les likes des publications
+//Route pour gérer les likes/unlikes des publications
 
 router.post("/publication/:postId/like", (req, res) => {
   const { userId } = req.body;
