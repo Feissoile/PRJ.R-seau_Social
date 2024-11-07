@@ -108,23 +108,64 @@ router.post("/publication/:postId/like", (req, res) => {
     );
 });
 
-//affichage des publications amis
+//Route pour gérer les likes/unlikes des commentaires lié a la publication
 
-router.get("/friendpost", async (req,res) => {
+//affichage des publications amis
+router.post(
+  "/publication/:postId/comment/:commentId/like",
+  async (req, res) => {
+    const { postId, commentId } = req.params;
+    const { userId } = req.body;
+    try {
+      const publication = await Publication.findById(postId);
+      if (!publication) {
+        return res
+          .status(404)
+          .json({ success: false, error: "Publication introuvable" });
+      }
+      const comment = await publication.comments.id(commentId);
+      if (!comment) {
+        return res
+          .status(404)
+          .json({ success: false, error: "Commentaire introuvable" });
+      }
+      const alreadyLiked = comment.likes.includes(userId);
+      if (alreadyLiked) {
+        comment.likes = comment.likes.filter((id) => id.toString() !== userId);
+      } else {
+        comment.likes.push(userId);
+      }
+      await publication.save();
+      res.json({ success: true, likes: comment.likes });
+    } catch (error) {
+      console.error("Erreur lors du like/unlike du commentaire:", error);
+      res.status(500).json({
+        success: false,
+        error: "Erreur lors du like/unlike du commentaire",
+      });
+    }
+  }
+);
+
+//
+
+router.get("/friendpost", async (req, res) => {
   const { userId } = req.body;
   try {
-
     const user = await User.findById(userId);
     if (!user) {
-      return res.status(404).json({ success: false, error: "Utilisateur introuvable" });
+      return res
+        .status(404)
+        .json({ success: false, error: "Utilisateur introuvable" });
     }
     const postFriends = await Publication.find().sort({ date: -1 }).limit(10);
-    res.json({ sucess : true, data : postFriends})
+    res.json({ sucess: true, data: postFriends });
   } catch (error) {
-    res.status(500).json({ success: false, error: "erreur lors de la recuperation des posts amis" });
+    res.status(500).json({
+      success: false,
+      error: "erreur lors de la recuperation des posts amis",
+    });
   }
-
 });
-
 
 module.exports = router;

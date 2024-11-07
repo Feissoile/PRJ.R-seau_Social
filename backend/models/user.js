@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const reviewSchema = mongoose.Schema({
   sender: String,
   date: Date,
-  stars: Number,
-  review: String,
+  texte: String,
+  picture: String,
+  video: String,
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
 const userSchema = mongoose.Schema({
@@ -13,14 +15,12 @@ const userSchema = mongoose.Schema({
   password: String,
   adress: String,
   description: String,
-  averageStar: Number,
   isLog: Boolean,
   coverPicture: String,
   profilePicture: String,
   token: String,
   reviews: [reviewSchema],
-  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }]
-  
+  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
 });
 
 const User = mongoose.model("users", userSchema);
