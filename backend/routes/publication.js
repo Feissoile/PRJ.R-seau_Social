@@ -109,8 +109,6 @@ router.post("/publication/:postId/like", (req, res) => {
 });
 
 //Route pour gérer les likes/unlikes des commentaires lié a la publication
-
-//affichage des publications amis
 router.post(
   "/publication/:postId/comment/:commentId/like",
   async (req, res) => {
@@ -147,7 +145,7 @@ router.post(
   }
 );
 
-//
+//affichage des publications amis
 
 router.get("/friendpost", async (req, res) => {
   const { userId } = req.body;
