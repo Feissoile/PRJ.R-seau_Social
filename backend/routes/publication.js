@@ -3,6 +3,7 @@ var router = express.Router();
 
 require("../models/connection");
 
+const User = require("../models/user");
 const Publication = require("../models/publication");
 const Comment = require("../models/comment");
 const { checkBody } = require("../modules/checkBody");
@@ -106,5 +107,24 @@ router.post("/publication/:postId/like", (req, res) => {
         .json({ result: false, error: "Erreur lors de la requête du like" })
     );
 });
+
+//affichage des publications amis
+
+router.get("/friendpost", async (req,res) => {
+  const { userId } = req.body;
+  try {
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, error: "Utilisateur introuvable" });
+    }
+    const postFriends = await Publication.find().sort({ date: -1 }).limit(10);
+    res.json({ sucess : true, data : postFriends})
+  } catch (error) {
+    res.status(500).json({ success: false, error: "erreur lors de la recuperation des posts amis" });
+  }
+
+});
+
 
 module.exports = router;

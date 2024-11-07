@@ -7,6 +7,7 @@ const User = require("../models/user");
 const { checkBody } = require("../modules/checkBody");
 const bcrypt = require("bcrypt");
 const uid2 = require("uid2");
+const Publication = require("../models/publication");
 
 /*Route pour un nouvelle utilisateur*/
 
@@ -146,11 +147,6 @@ router.put("/user/updateProfile/:token", (req, res) => {
       console.error("Erreur de mise à jour du profil:", error);
       res.json({ result: false, error: "Erreur de mise à jour du profil" });
     });
-});
-
-/* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
 });
 
 module.exports = router;

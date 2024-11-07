@@ -19,6 +19,8 @@ const userSchema = mongoose.Schema({
   profilePicture: String,
   token: String,
   reviews: [reviewSchema],
+  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }]
+  
 });
 
 const User = mongoose.model("users", userSchema);
