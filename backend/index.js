@@ -20,6 +20,7 @@ io.on("connection", (socket) => {
   socket.emit("Bienvenue", "Bienvenue sur le serveur Socket.io !");
 
   socket.on("chat message", (msg) => {
+    io.emit('chat message', msg);
     console.log("message: " + msg);
   });
 
