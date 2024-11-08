@@ -16,8 +16,12 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    console.log('Nouvelle connexion établie');
-    socket.emit('message', 'Bienvenue sur le serveur Socket.io !');
+    console.log('a user connected', socket.id);
+    socket.emit('Bienvenue', 'Bienvenue sur le serveur Socket.io !');
+});
+
+socket.on("disconnect", () => {
+    console.log("Client disconnected:", socket.id);
 });
 
 server.listen(3000, () => {
