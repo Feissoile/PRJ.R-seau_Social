@@ -1,5 +1,5 @@
-const express = require('express');
-const { createServer } = require('http');
+import express from ('express');
+import { createServer } from ('http');
 
 const app = express();
 const server = createServer(app);
