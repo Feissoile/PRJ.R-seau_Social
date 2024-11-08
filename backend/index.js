@@ -18,11 +18,14 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
     console.log('a user connected', socket.id);
     socket.emit('Bienvenue', 'Bienvenue sur le serveur Socket.io !');
+
+    socket.on("disconnect", () => {
+        console.log("Client disconnected:", socket.id);
+    });
+    
 });
 
-socket.on("disconnect", () => {
-    console.log("Client disconnected:", socket.id);
-});
+
 
 server.listen(3000, () => {
   console.log('server running at http://localhost:3000');
