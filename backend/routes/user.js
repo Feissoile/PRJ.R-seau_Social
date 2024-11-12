@@ -1,5 +1,5 @@
-var express = require("express");
-var router = express.Router();
+import express from "express";
+const router = express.Router();
 
 require("../models/connection");
 
@@ -149,4 +149,4 @@ router.put("/user/updateProfile/:token", (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;
