@@ -6,7 +6,7 @@ import User from "../models/user.js";
 const { checkBody } = require("../modules/checkBody");
 const bcrypt = require("bcrypt");
 const uid2 = require("uid2");
-import Publication from ("../models/publication.js");
+//import Publication from "../models/publication.js";
 
 /*Route pour un nouvelle utilisateur*/
 
