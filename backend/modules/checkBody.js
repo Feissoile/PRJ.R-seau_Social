@@ -1,5 +1,4 @@
 function checkBody(body, keys) {
-  
   for (const field of keys) {
     if (body[field] && body[field] !== "") {
       return true;
@@ -9,4 +8,4 @@ function checkBody(body, keys) {
   return false;
 }
 
-module.exports = { checkBody };
+export { checkBody };

@@ -6,7 +6,8 @@ import User from "../models/user.js";
 import Publication from "../models/publication.js";
 import Comment from "../models/comment.js";
 
-const { checkBody } = require("../modules/checkBody");
+
+import { checkBody } from "../modules/checkBody.js";
 
 //route pour la creation d'une publication
 router.post("/publication/post", (req, res) => {
