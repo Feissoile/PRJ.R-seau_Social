@@ -5,8 +5,10 @@
  */
 
 import app from '../app.js';
-var debug = require('debug')('backend:server');
-var http = require('http');
+import createDebug from 'debug';
+const debug = createDebug('backend:server');
+
+import http from 'http';
 
 /**
  * Get port from environment and store in Express.
