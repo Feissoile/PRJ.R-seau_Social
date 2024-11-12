@@ -2,10 +2,10 @@ import express from "express";
 const router = express.Router();
 
 import "../models/connection.js";
+import User from "../models/user.js";
+import Publication from "../models/publication.js";
+import Comment from "../models/comment.js";
 
-const User = require("../models/user");
-const Publication = require("../models/publication");
-const Comment = require("../models/comment");
 const { checkBody } = require("../modules/checkBody");
 
 //route pour la creation d'une publication

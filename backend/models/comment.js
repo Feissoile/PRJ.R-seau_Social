@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const commentSchema = mongoose.Schema({
   postId: { type: mongoose.Schema.Types.ObjectId, ref: "Publication" },

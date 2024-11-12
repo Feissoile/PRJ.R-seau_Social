@@ -2,12 +2,11 @@ import express from "express";
 const router = express.Router();
 
 import "../models/connection.js";
-
-const User = require("../models/user");
+import User from "../models/user.js";
 const { checkBody } = require("../modules/checkBody");
 const bcrypt = require("bcrypt");
 const uid2 = require("uid2");
-const Publication = require("../models/publication");
+import Publication from ("../models/publication.js");
 
 /*Route pour un nouvelle utilisateur*/
 
