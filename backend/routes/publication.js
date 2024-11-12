@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-require("../models/connection");
+import "../models/connection.js";
 
 const User = require("../models/user");
 const Publication = require("../models/publication");
