@@ -4,8 +4,8 @@ const router = express.Router();
 import "../models/connection.js";
 import User from "../models/user.js";
 import { checkBody } from "../modules/checkBody.js";
-const bcrypt = require("bcrypt");
-const uid2 = require("uid2");
+import bcrypt from "bcrypt";
+import uid2 from "uid2";
 //import Publication from "../models/publication.js";
 
 /*Route pour un nouvelle utilisateur*/
