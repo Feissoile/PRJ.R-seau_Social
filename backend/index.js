@@ -1,12 +1,20 @@
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import app from "./app.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const app = express();
-const server = createServer(app);
-const io = new Server(server);
+
+
+//const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,7 +28,7 @@ io.on("connection", (socket) => {
   socket.emit("Bienvenue", "Bienvenue sur le serveur Socket.io !");
 
   socket.on("chat message", (msg) => {
-    io.emit('chat message', msg);
+    io.emit("chat message", msg);
     console.log("message: " + msg);
   });
 
