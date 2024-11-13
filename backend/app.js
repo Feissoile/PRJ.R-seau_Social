@@ -52,6 +52,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(path.resolve(), "public")));
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
 // Routes
 app.use("/", indexRouter);
